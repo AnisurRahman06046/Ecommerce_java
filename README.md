@@ -94,3 +94,11 @@ java ecommerce.main.Main
 
 ### Notification (Strategy)
 `NotificationService` accepts any `NotificationStrategy` (Email or SMS) and delegates message delivery.
+
+Creation problem        → Factory
+Algorithm switching     → Strategy
+Add behavior dynamically→ Decorator
+Event system            → Observer
+Compatibility layer     → Adapter
+Action as object        → Command
+Hierarchical structure  → Composite
