@@ -3,6 +3,8 @@ import ecommerce.payment.*;
 import ecommerce.order.*;
 import ecommerce.notification.*;
 import ecommerce.discount.*;
+import ecommerce.discount.Discount;
+import ecommerce.promotion.*;
 
 public class Main{
     public static void main(String[] args){
@@ -18,13 +20,22 @@ public class Main{
         // Create order
         Order order = new Order("ORD123",299.99);
 
-        // apply discount
-        Discount discount1 = new PercentageDiscount(10);
-        Discount discount2 = new FlatDiscount(20);
+        // Set up promotion
+        PromotionEngine engine = new PromotionEngine();
+        engine.addPromotion(new BlackFridayPromotion());
+        engine.addPromotion(new LoyaltyPromotion());
 
-        // combine discount using decorator
-        Discount combineDiscount = new DiscountDecorator(discount1,discount2);
-        double finalAmount = combineDiscount.apply(order.getTotalAmount());
+        // calculate combined discount
+        Discount bastDiscount = engine.calculateBestDiscount(order.getTotalAmount());
+        double finalAmount = bastDiscount.apply(order.getTotalAmount());
+
+        // // apply discount
+        // Discount discount1 = new PercentageDiscount(10);
+        // Discount discount2 = new FlatDiscount(20);
+
+        // // combine discount using decorator
+        // Discount combineDiscount = new DiscountDecorator(discount1,discount2);
+        // double finalAmount = combineDiscount.apply(order.getTotalAmount());
 
         System.out.println("Final payable amount:"+ finalAmount);
 
