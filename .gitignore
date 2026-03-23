@@ -1,0 +1,12 @@
+# Compiled class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Maven / Gradle build folders
+target/
+build/
+ecommerce/
